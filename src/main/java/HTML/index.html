@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla de Partidas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .tabla-partidas {
+      border-collapse: collapse;
+      width: 60%;
+      margin-right: 20px;
+    }
+
+    .tabla-partidas th,
+    .tabla-partidas td {
+      border: 1px solid #dddddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .tabla-partidas th {
+      background-color: #f2f2f2;
+    }
+
+    .formulario {
+      width: 30%;
+    }
+
+    .formulario select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .formulario button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .formulario button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <table class="tabla-partidas">
+      <thead>
+        <tr>
+          <th>ID Partida</th>
+          <th>Jugador 1</th>
+          <th>Jugador 2</th>
+          <th>Ganador</th>
+          <th>Último Turno</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- INSERTAR_NUEVAS_FILAS -->
+      </tbody>
+    </table>
+  </div>
+
+</body>
+
+</html>
