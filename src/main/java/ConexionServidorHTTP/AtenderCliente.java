@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.net.ssl.SSLSocket;
 
 /**
  *
@@ -23,12 +24,12 @@ import java.util.logging.Logger;
  */
 public class AtenderCliente extends Thread {
 
-    private final Socket skCliente;
+    private final SSLSocket skCliente;
     private InputStreamReader flujo_entrada;
     private BufferedReader bufferedReader;
     private PrintWriter printWriter;
 
-    public AtenderCliente(Socket skCliente) {
+    public AtenderCliente(SSLSocket skCliente) {
         this.skCliente = skCliente;
     }
 
