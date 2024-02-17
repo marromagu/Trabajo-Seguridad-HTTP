@@ -20,10 +20,17 @@
       height: 100vh;
     }
 
+    .container2 {
+      width: 50%;
+      padding: 10px;
+      margin-left: 1px;
+
+    }
+
     .tabla-partidas {
       border-collapse: collapse;
       width: 60%;
-      margin-right: 20px;
+      margin: 50px;
     }
 
     .tabla-partidas th,
@@ -38,7 +45,10 @@
     }
 
     .formulario {
-      width: 30%;
+      width: 90%;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .formulario select {
@@ -58,6 +68,22 @@
 
     .formulario button:hover {
       background-color: #45a049;
+    }
+
+    .otroBoton {
+      width: 85%;
+      margin: 20px;
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: center;
     }
   </style>
 </head>
@@ -79,6 +105,15 @@
         <!-- INSERTAR_NUEVAS_FILAS -->
       </tbody>
     </table>
+    <div class="container2">
+      <form class="formulario" method="post" action="https://localhost:5050/Tableros">
+        <label for="partidaSelect">Seleccionar Partida:</label>
+        <select id="partidaSelect" name="partidaSelect">
+          <!-- OPTIONES_DE_PARTIDAS -->
+        </select>
+        <button type="submit">Ver Partida</button>
+      </form>
+    </div>
   </div>
 
 </body>

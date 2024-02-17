@@ -6,8 +6,6 @@ package ConexionServidorHTTP;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -51,10 +49,9 @@ public class ConexionHTTP {
 
             System.out.println("-> Servidor HTTP lanzado por el puerto: " + PUERTO);
             System.out.println("-> localhost:" + PUERTO);
-
+            System.out.println("-> https://localhost:5050");
             while (true) {
                 SSLSocket skCliente = (SSLSocket) sslServerSocket.accept();
-                System.out.println("-> Conexion Acceptada");
                 new AtenderCliente(skCliente).start();
 
             }
