@@ -29,7 +29,7 @@ import javax.net.ssl.SSLSocket;
 public class ConexionHTTP {
 
     private final int PUERTO = 5050;
-    private final String KEY_PASSWORD = "Mario";
+    private final String KEY_PASSWORD = "123456";
 
     public void establecerConexion() {
         try {
