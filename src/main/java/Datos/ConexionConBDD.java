@@ -327,4 +327,83 @@ public class ConexionConBDD implements Serializable {
         return nombreGanador;
     }
 
+    public String obtenerNombrePorID(int idJugador) {
+        String nombreJugador = null;
+
+        try (Connection conexion = getConexion()) {
+            String sql = "SELECT nombre FROM Jugadores WHERE id_jugador = ?";
+
+            try (PreparedStatement statement = conexion.prepareStatement(sql)) {
+                // Establecer el parámetro idJugador en la consulta preparada
+                statement.setInt(1, idJugador);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        nombreJugador = resultSet.getString("nombre");
+                    } else {
+                        // No se encontró un jugador con la ID proporcionada
+                        System.out.println("No se encontró un jugador con la ID: " + idJugador);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en ConexionConBDD: al obtener el nombre del jugador: " + e.getMessage());
+        }
+
+        return nombreJugador;
+    }
+
+    public String obtenerContraID(int idJugador) {
+        String contraseñaJugador = null;
+
+        try (Connection conexion = getConexion()) {
+            String sql = "SELECT contraseña FROM Jugadores WHERE id_jugador = ?";
+
+            try (PreparedStatement statement = conexion.prepareStatement(sql)) {
+                // Establecer el parámetro idJugador en la consulta preparada
+                statement.setInt(1, idJugador);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        contraseñaJugador = resultSet.getString("contraseña");
+                    } else {
+                        // No se encontró un jugador con la ID proporcionada
+                        System.out.println("No se encontró un jugador con la ID: " + idJugador);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en ConexionConBDD: al obtener la contraseña del jugador: " + e.getMessage());
+        }
+
+        return contraseñaJugador;
+    }
+
+    public boolean actualizarContraseñaPorID(int idJugador, String nuevaContraseña) {
+        boolean actualizacionExitosa = false;
+
+        try (Connection conexion = getConexion()) {
+            String sql = "UPDATE Jugadores SET contraseña = ? WHERE id_jugador = ?";
+
+            try (PreparedStatement statement = conexion.prepareStatement(sql)) {
+                // Establecer los parámetros de la consulta preparada
+                statement.setString(1, nuevaContraseña);
+                statement.setInt(2, idJugador);
+
+                // Ejecutar la actualización y verificar si se actualizó algún registro
+                int filasActualizadas = statement.executeUpdate();
+                if (filasActualizadas > 0) {
+                    actualizacionExitosa = true;
+                    System.out.println("Se actualizó la contraseña del jugador con ID " + idJugador + ".");
+                } else {
+                    System.out.println("No se encontró ningún jugador con la ID " + idJugador + ".");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en ConexionConBDD: al actualizar la contraseña del jugador: " + e.getMessage());
+        }
+
+        return actualizacionExitosa;
+    }
+
 }

@@ -5,6 +5,7 @@
 package ConexionServidorHTTP;
 
 import Datos.ConexionConBDD;
+import Datos.Usuario;
 import Gestor.GestorDePaginas;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class AtenderCliente extends Thread {
             int contentLength = 0;
 
             listaNegra.add(2);//Ponemos una perosna en la lista negra
-
+            listaNegra.add(10);//Ponemos una perosna en la lista negra
             while ((linea = bufferedReader.readLine()) != null && !linea.isEmpty()) {
                 if (linea.startsWith("Content-Length:")) {
                     contentLength = Integer.parseInt(linea.substring("Content-Length:".length()).trim());
@@ -107,7 +108,7 @@ public class AtenderCliente extends Thread {
         String contenidoHTML;
         String[] partes = body.split("&");
         String nombre = "";
-        String numero = "";
+        String contraseña = "";
         for (String parte : partes) {
             String[] keyValue = parte.split("=");
             String key = keyValue[0];
@@ -115,14 +116,17 @@ public class AtenderCliente extends Thread {
             if (key.equals("nombre")) {
                 nombre = value;
             } else if (key.equals("contrasena")) {
-                numero = value;
+                contraseña = value;
             }
         }
         System.out.println("Nombre: " + nombre);
-        System.out.println("Contraseña: " + numero);
+        System.out.println("Contraseña: " + contraseña);
         Datos.ConexionConBDD miCone = new ConexionConBDD();
-        int numero1 = Integer.parseInt(numero);
-        int id = miCone.consultarIDJugador(nombre, numero1);
+        Datos.Usuario miUsuario = new Usuario();
+        miUsuario.setNombre(nombre);
+        miUsuario.setContraseña(contraseña);
+        System.out.println("*"+miUsuario.hashCode());
+        int id = miCone.consultarIDJugador(nombre, miUsuario.hashCode());
         for (int i = 0; i < listaNegra.size(); i++) {
             if ((id != -1) && (id != listaNegra.get(i))) {
                 miCone.obtenerPartidasTerminadasPorJugador(id);
